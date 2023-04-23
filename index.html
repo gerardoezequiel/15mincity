@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>15-Minute City Map</title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles/normalize.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles/main.css" />
+
+    <!-- Mapbox Geocoder -->
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v3.1.6/mapbox-gl-geocoder.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v3.1.6/mapbox-gl-geocoder.css"
+      type="text/css"
+    />
+
+    <!-- Mapbox Directions -->
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.css"
+      type="text/css"
+    />
+
+    <!-- Turf-->
+    <script src="https://npmcdn.com/@turf/turf/turf.min.js"></script>
+
+    <!-- D3-->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+    <!-- Mapbox GL JS  -->
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.css"
+    />
+    <!-- Assemby for maki icons  -->
+    <link
+      href="https://api.mapbox.com/mapbox-assembly/v0.23.2/assembly.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+  <div class="h-screen flex">
+    <div id="map" class="flex-grow"></div>
+    <div id="sidebar" class="h-screen w-1/6"></div>
+    <div id="sidebar-toggle" class="sidebar-toggle">
+      <i class="icon icon-menu"></i>
+    </div>
+  </div>
+  <script src="libs/osmtogeojson.js"></script>
+  <script>
+    window.osmtogeojson = osmtogeojson;
+  </script>
+  <script type="module" src="scripts/app.js"></script>
+</body>
+</html>

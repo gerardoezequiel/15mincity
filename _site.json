@@ -1,0 +1,151 @@
+{
+  "items" : [
+    {
+      "path" : "_site.json",
+      "mimeType" : "application/json",
+      "lastUpdated" : 1682180495,
+      "checksum" : "94507c79091f7be705514f3d66196491",
+      "fileSize" : 4224
+    },
+    {
+      "path" : "scripts/population.js",
+      "mimeType" : "text/javascript",
+      "lastUpdated" : 1682110198,
+      "checksum" : "cc4a7b05eaaba21cd7c10ad29f258e8e",
+      "fileSize" : 1297
+    },
+    {
+      "path" : "scripts/ui-rightsidebar.js",
+      "mimeType" : "text/javascript",
+      "lastUpdated" : 1682166670,
+      "checksum" : "1cdf360ff7393ae7ca690921419ab1ca",
+      "fileSize" : 2340
+    },
+    {
+      "path" : "scripts/legend.js",
+      "mimeType" : "text/javascript",
+      "lastUpdated" : 1682165518,
+      "checksum" : "fcbb6b9f124a2decaf6a9f5fe501950e",
+      "fileSize" : 1806
+    },
+    {
+      "path" : "scripts/opentripmap.js",
+      "mimeType" : "text/javascript",
+      "lastUpdated" : 1682105472,
+      "checksum" : "b662bfbf610dd0f1861425705de15a41",
+      "fileSize" : 1315
+    },
+    {
+      "path" : "scripts/mapbox-poi.js",
+      "mimeType" : "text/javascript",
+      "lastUpdated" : 1682197427,
+      "checksum" : "45e69a3e8c52b4e279247c0ef55abf1b",
+      "fileSize" : 4600
+    },
+    {
+      "path" : "scripts/isochrone.js",
+      "mimeType" : "text/javascript",
+      "lastUpdated" : 1682204219,
+      "checksum" : "8244c64f421ce9627ae284ff57d058f8",
+      "fileSize" : 2298
+    },
+    {
+      "path" : "styles/main.css",
+      "mimeType" : "text/css",
+      "lastUpdated" : 1682119956,
+      "checksum" : "b399ac0fbeaff265a38e580d82afbab7",
+      "fileSize" : 794
+    },
+    {
+      "path" : "test.html",
+      "mimeType" : "text/html",
+      "lastUpdated" : 1682165764,
+      "checksum" : "c62de74912d803bc9a0e6f2ce1ff319a",
+      "fileSize" : 1144
+    },
+    {
+      "path" : ".vscode/settings.json",
+      "mimeType" : "application/json",
+      "lastUpdated" : 1681857573,
+      "checksum" : "279030ac3fb59261e9301463079392ec",
+      "fileSize" : 830
+    },
+    {
+      "path" : "scripts/ui-interactions.js",
+      "mimeType" : "text/javascript",
+      "lastUpdated" : 1682160126,
+      "checksum" : "8669aff07568cbd8d8113554801ce670",
+      "fileSize" : 2278
+    },
+    {
+      "path" : "yarn.lock",
+      "mimeType" : "application/octet-stream",
+      "lastUpdated" : 1682179089,
+      "checksum" : "db3a2628db40f62e34177d5596994566",
+      "fileSize" : 10801
+    },
+    {
+      "path" : "styles/normalize.css",
+      "mimeType" : "text/css",
+      "lastUpdated" : 1681884464,
+      "checksum" : "244cb3ac9cc1bb87dc8e517636f88741",
+      "fileSize" : 6142
+    },
+    {
+      "path" : "scripts/app.js",
+      "mimeType" : "text/javascript",
+      "lastUpdated" : 1682204416,
+      "checksum" : "ff15758e8eed8cd68f23e153b0dcf8e3",
+      "fileSize" : 2062
+    },
+    {
+      "path" : ".DS_Store",
+      "mimeType" : "application/octet-stream",
+      "lastUpdated" : 1682178155,
+      "checksum" : "7d6dea2083d82cb54e771e12e589cb1f",
+      "fileSize" : 6148
+    },
+    {
+      "path" : "libs/osmtogeojson.js",
+      "mimeType" : "text/javascript",
+      "lastUpdated" : 1682180448,
+      "checksum" : "bc21b389e3bd2b96e5d00cd3bc028d11",
+      "fileSize" : 34674
+    },
+    {
+      "path" : "scripts/osmquery.js",
+      "mimeType" : "text/javascript",
+      "lastUpdated" : 1682197798,
+      "checksum" : "116bbe32cd0b3c7456a182faceefcb1b",
+      "fileSize" : 1929
+    },
+    {
+      "path" : "scripts/buildings.js",
+      "mimeType" : "text/javascript",
+      "lastUpdated" : 1682166255,
+      "checksum" : "d59a4ca9f4569a9d9dff00f00f694a00",
+      "fileSize" : 3469
+    },
+    {
+      "path" : "package.json",
+      "mimeType" : "application/json",
+      "lastUpdated" : 1682179089,
+      "checksum" : "3efd38b4c9d82a0ff3bd98c20d738854",
+      "fileSize" : 64
+    },
+    {
+      "path" : "scripts/ui-controls.js",
+      "mimeType" : "text/javascript",
+      "lastUpdated" : 1682099600,
+      "checksum" : "3da09454605f0e6d6a9225fc24098bd8",
+      "fileSize" : 1772
+    },
+    {
+      "path" : "index.html",
+      "mimeType" : "text/html",
+      "lastUpdated" : 1682201131,
+      "checksum" : "caaae43ba3952aea67e78b1b8afa52b5",
+      "fileSize" : 2067
+    }
+  ]
+}
