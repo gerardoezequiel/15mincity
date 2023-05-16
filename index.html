@@ -6,7 +6,6 @@
     <title>15-Minute City Map</title>
 
     <!-- Styles -->
-    <link rel="stylesheet" href="styles/normalize.css" />
     <link
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
       rel="stylesheet"
@@ -36,30 +35,36 @@
     <script src="https://d3js.org/d3.v7.min.js"></script>
 
     <!-- Mapbox GL JS  -->
-    <script src="https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.js"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
     <link
       rel="stylesheet"
-      href="https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.css"
+      href="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css"
     />
-    <!-- Assemby for maki icons  -->
+    <!-- Assemby for maki icons  
     <link
       href="https://api.mapbox.com/mapbox-assembly/v0.23.2/assembly.min.css"
       rel="stylesheet"
-    />
+    />-->
   </head>
 
   <body>
   <div class="h-screen flex">
     <div id="map" class="flex-grow"></div>
-    <div id="sidebar" class="h-screen w-1/6"></div>
-    <div id="sidebar-toggle" class="sidebar-toggle">
-      <i class="icon icon-menu"></i>
-    </div>
+    <div id="sidebar" class="h-screen w-1/9 collapsed"></div>
+    <div id="population-sidebar" class="h-screen w-1/9 collapsed"></div>
+    <div id="buildings-sidebar" class="h-screen w-1/9 collapsed"></div>
+    <div id="poi-sidebar" class="h-screen w-1/9 collapsed"></div>
   </div>
+  <button id="sidebar-toggle" class="sidebar-toggle">🌐</button>
+  <button id="population-sidebar-toggle" class="sidebar-toggle">🚻</button>
+  <button id="buildings-sidebar-toggle" class="sidebar-toggle">🏢</button>
+  <button id="pois-sidebar-toggle" class="sidebar-toggle">📍</button>
+
   <script src="libs/osmtogeojson.js"></script>
   <script>
     window.osmtogeojson = osmtogeojson;
   </script>
-  <script type="module" src="scripts/app.js"></script>
+  <script type="module" src="scripts/00-app.js"></script>
 </body>
+
 </html>

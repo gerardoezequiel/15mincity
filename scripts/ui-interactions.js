@@ -1,6 +1,11 @@
-import { updateIsochrones } from "./isochrone.js";
-import { addPopulationLayer } from "./population.js";
-import { addOpenTripLayer } from "./opentripmap.js";
+import { updateIsochrones } from "./00-isochrone.js";
+import { addPopulationLayer } from "./01-population.js";
+import { addOpenTripLayer } from "./xx-opentripmap.js";
+import { addOSMBuildings } from "./02-osm-buildings.js";
+import { addMapboxBuildings3D } from "./02-mapbox-buildings.js";
+import { addMapboxPOIs } from "./03-mapbox-poi.js";
+import { addOSMPOIs } from "./03-osm-pois.js"; // Import the addOSMPOIs function
+import { poiCategories } from "./zz-15mincategories.js";
 
 let currentProfile = "walking"; // Store the current profile
 
@@ -11,8 +16,12 @@ export function addEventListeners(
   directions,
   geolocateControl
 ) {
+  let abortControllerOSM = new AbortController(); // Create a separate AbortController instance for OSM requests
 
   const updateIsochronesHandler = async (lngLat, profile = currentProfile) => {
+    // Cancel previous OSM requests if any
+    abortControllerOSM.abort();
+
     // Update the marker position
     marker.setLngLat(lngLat);
 
@@ -22,10 +31,12 @@ export function addEventListeners(
       profile
     );
 
-    // Remove the old population layers and POI layers
+    // Remove the old layers
     isochrones.forEach((_, index) => {
       const populationLayerId = `population-layer-${index}`;
       const poiLayerId = `poi-${index}`;
+      const buildingId = `buildings-${index}`;
+      const mapboxPoiId = `Mapbox-POI-${index}`;
 
       if (map.getLayer(populationLayerId)) {
         map.removeLayer(populationLayerId);
@@ -34,13 +45,52 @@ export function addEventListeners(
       if (map.getLayer(poiLayerId)) {
         map.removeLayer(poiLayerId);
       }
+
+      if (map.getLayer(buildingId)) {
+        map.removeLayer(buildingId);
+      }
+
+      if (map.getLayer(mapboxPoiId)) {
+        map.removeLayer(mapboxPoiId);
+      }
+
+      for (const categoryKey of Object.keys(poiCategories)) {
+        for (const subcategoryKey of Object.keys(poiCategories[categoryKey])) {
+          const osmPoiID = `${index}-${categoryKey}-${subcategoryKey}-poi`;
+
+          const circleLayerId = `${osmPoiID}-icons`;
+          if (map.getLayer(circleLayerId)) {
+            map.removeLayer(circleLayerId);
+          }
+
+          const textLayerId = `${osmPoiID}-labels`;
+          if (map.getLayer(textLayerId)) {
+            map.removeLayer(textLayerId);
+          }
+
+          if (map.getSource(osmPoiID)) {
+            map.removeSource(osmPoiID); // Remove the source only if it exists
+          }
+        }
+      }
     });
 
-    // Add new population layers and POI layers
-    addPopulationLayer(map, isochrones);
-    addOpenTripLayer(map, isochrones);
+    // Add new layers
+    // addPopulationLayer(map, isochrones);
+    // addOpenTripLayer(map, isochrones);
+    // addOSMBuildings(map, isochrones);
+    // addMapboxPOIs(map, isochrones);
+
+
+    // Create a new AbortController instance for OSM
+    abortControllerOSM = new AbortController();
+
+    // Set up the signal from the AbortController
+    const signalOSM = abortControllerOSM.signal;
+
+    addOSMPOIs(map, isochrones, signalOSM);
   };
-  
+
   // Update isochrones when marker is dragged
   marker.on("dragend", () => {
     const lngLat = marker.getLngLat();

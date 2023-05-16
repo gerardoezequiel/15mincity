@@ -1,3 +1,8 @@
+/*import {
+  buildingTypeCategories,
+  categoryColors,
+} from "./zz-15mincategories.js";*/
+
 const buildingTypeCategories = {
   apartments: "Living",
   farm: "Working",
@@ -17,14 +22,14 @@ const buildingTypeCategories = {
   supermarket: "Commerce",
   warehouse: "Working",
   kiosk: "Commerce",
-  religious: "Entertainment",
-  cathedral: "Entertainment",
-  temple: "Entertainment",
-  chapel: "Entertainment",
-  church: "Entertainment",
-  mosque: "Entertainment",
-  synagogue: "Entertainment",
-  shrine: "Entertainment",
+  //religious: "Entertainment",
+  //cathedral: "Entertainment",
+  //temple: "Entertainment",
+  //chapel: "Entertainment",
+  //church: "Entertainment",
+  //mosque: "Entertainment",
+  //synagogue: "Entertainment",
+  //shrine: "Entertainment",
   civic: "Entertainment",
   government: "Working",
   hospital: "Healthcare",
@@ -56,8 +61,8 @@ const buildingTypeCategories = {
   stable: "Working",
   service: "Working",
   ruins: "Entertainment",
-  transformer_tower: "Working",
-  water_tower: "Working",
+  //transformer_tower: "Working",
+  //water_tower: "Working",
 };
 
 const categoryColors = {
@@ -70,12 +75,11 @@ const categoryColors = {
   Unknown: "rgba(189, 189, 189, 0.4)", // Gray
 };
 
-export function addOSMBuildingsData(map) {
+export function addMapboxBuildings3D(map, isochrone) {
   map.addSource("osm-data", {
     type: "vector",
     url: "mapbox://mapbox.mapbox-streets-v8",
   });
-  
 
   // Add 3D buildings layer
   map.addLayer({
@@ -83,7 +87,7 @@ export function addOSMBuildingsData(map) {
     type: "fill-extrusion",
     source: "osm-data",
     "source-layer": "building",
-    minzoom: 13,
+    minzoom: 10,
     paint: {
       "fill-extrusion-color": [
         "match",
@@ -123,5 +127,5 @@ export function addOSMBuildingsData(map) {
         .addTo(map);
     }
   });
-}
 
+}

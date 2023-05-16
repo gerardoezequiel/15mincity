@@ -11,6 +11,7 @@ export function addAllControls(map, center, marker) {
   const geocoder = new MapboxGeocoder({
     accessToken: mapboxgl.accessToken,
     placeholder: "Search your address",
+    proximity: { longitude: -0.1276, latitude: 51.5074 },
   });
 
    geocoder.on("result", (e) => {
@@ -23,6 +24,19 @@ export function addAllControls(map, center, marker) {
 
   map.addControl(geocoder, "top-right");
 
+  
+
+   const directions = new MapboxDirections({
+     accessToken: mapboxgl.accessToken,
+     unit: "metric",
+     profile: "mapbox/walking",
+     controls: { inputs: true, instructions: false },
+     interactive: false,
+     coordinates: [marker.getLngLat().toArray(), null],
+   });
+
+  map.addControl(directions, "bottom-right");
+  
   // Add zoom and rotation controls to the map.
   map.addControl(new mapboxgl.NavigationControl());
   map.addControl(new mapboxgl.FullscreenControl());
@@ -46,16 +60,7 @@ export function addAllControls(map, center, marker) {
     "bottom-right"
   );
 
-  const directions = new MapboxDirections({
-    accessToken: mapboxgl.accessToken,
-    unit: "metric",
-    profile: "mapbox/walking",
-    controls: { inputs: true, instructions: false },
-    interactive: false,
-    coordinates: [marker.getLngLat().toArray(), null],
-  });
-
-  map.addControl(directions, "bottom-left");
+ 
   
   // Removing the driving and driving traffic buttons
   document
