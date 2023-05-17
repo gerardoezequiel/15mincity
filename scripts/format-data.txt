@@ -1,0 +1,28 @@
+var Isochrone_15min= [
+  {name: 'Mobility', 15min:(sum pois total in  category}
+  {name: 'Commerce', 15min: (sum pois total in  category}
+  {name: 'Healthcare', 15min: (sum pois total in  category}
+  {name: 'Education', 15min: (sum pois total in  category}
+  {name: 'Entertainment', 15min: (sum pois total in  category}
+];
+
+var Isochrone_10min= [
+  {name: 'Mobility', 10min:(sum pois total in  category}
+  {name: 'Commerce', 10min: (sum pois total in  category}
+  {name: 'Healthcare', 10min: (sum pois total in  category}
+  {name: 'Education', 10min: (sum pois total in  category}
+  {name: 'Entertainment', 10min: (sum pois total in  category}
+];
+
+var Isochrone_5min= [
+  {name: 'Mobility', 5min:(sum pois total in  category}
+  {name: 'Commerce', 5min: (sum pois total in  category}
+  {name: 'Healthcare', 5min: (sum pois total in  category}
+  {name: 'Education', 5min: (sum pois total in  category}
+  {name: 'Entertainment', 5min: (sum pois total in  category}
+];
+
+
+
+per every isochrone, category and subcategory
+  (sum pois total in  category/total pois in isocrone)*100

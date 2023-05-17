@@ -1,3 +1,5 @@
+import { createPoiChart } from "./03-poi-chart.js";
+
 export function createPoiSidebar() {
   const poiSidebar = document.getElementById("poi-sidebar");
 
@@ -11,10 +13,19 @@ export function createPoiSidebar() {
   poiSidebar.appendChild(contentContainer);
 
   // Add your content for the POI sidebar here
-  // ...
 
-  // Example:
   const title = document.createElement("h2");
   title.textContent = "Points of Interest";
   contentContainer.appendChild(title);
+
+  // Create the chart and append it to the content container
+  const chartContainer = document.createElement("div");
+  chartContainer.id = "chart-container";
+  chartContainer.style.width = "300px"; // set width
+  chartContainer.style.height = "300px"; // set height
+  contentContainer.appendChild(chartContainer);
+
+  const chart = createPoiChart();
+  chart.container("chart-container");
+  chart.draw();
 }

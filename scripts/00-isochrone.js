@@ -80,6 +80,9 @@ export async function updateIsochrones(
       "visibility",
       currentMinutes <= 15 ? "visible" : "none"
     );*/
+    const area = turf.area(iso.geometry); // Measure the area using Turf.js
+
+    console.log(`Isochrone ${currentMinutes} minutes: ${area} square meters`);
   });
 
   return isochrones;

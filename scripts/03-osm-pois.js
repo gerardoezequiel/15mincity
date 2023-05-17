@@ -2,26 +2,49 @@ import { poiCategories, categoryColors } from "./zz-15mincategories.js";
 
 export async function addOSMPOIs(map, isochrones, signal) {
   const overpassApiUrl = "https://overpass-api.de/api/interpreter";
-  const requests = [];
+  let index;
 
-  // Sort isochrones in ascending order of size (number of coordinates)
-  isochrones.sort(
-    (a, b) => a.geometry.coordinates.length - b.geometry.coordinates.length
-  );
+  // Sort isochrones in ascending order of area
+  isochrones.sort((a, b) => turf.area(a) - turf.area(b));
+
+  const Isochrone_5min = [];
+  const Isochrone_10min = [];
+  const Isochrone_15min = [];
+
+  // Create variables to store the totals and poi counts
+  const totals = {};
+  const poiCountsPerIsochrone = {};
+
+  // Helper function to create a formatted object
+  const createFormattedObject = (isochroneKey, categoryKey) => {
+    const totalPOIsInIsochrone = totals[isochroneKey]?.total || 0;
+    const totalPOIsInCategory =
+      poiCountsPerIsochrone[isochroneKey]?.[categoryKey] || 0;
+    const percentage = totalPOIsInIsochrone
+      ? (totalPOIsInCategory / totalPOIsInIsochrone) * 100
+      : 0;
+    return { name: categoryKey, [isochroneKey]: percentage };
+  };
+
+  // Define the categories array
+  const categories = [
+    "Mobility",
+    "Commerce",
+    "Healthcare",
+    "Education",
+    "Entertainment",
+  ];
 
   // Iterate over each isochrone
-  for (let index = 0; index < isochrones.length; index++) {
+  for (index = 0; index < isochrones.length; index++) {
     const isochrone = isochrones[index];
     const isochronePolygon = turf.polygon(isochrone.geometry.coordinates);
 
-    // Create an array to store batched queries for each category
     const batchedQueries = [];
 
-    // Iterate over each category
     for (const [categoryKey, categoryValue] of Object.entries(poiCategories)) {
       const categoryColor = categoryColors[categoryKey];
 
-      // Iterate over each subcategory in the category
       for (const [subcategoryKey, { osmTag, maki }] of Object.entries(
         categoryValue
       )) {
@@ -35,24 +58,44 @@ export async function addOSMPOIs(map, isochrones, signal) {
 
         const request = fetch(
           `${overpassApiUrl}?data=${encodeURIComponent(query)}`,
-          { signal } // Pass the abort signal to fetch
+          { signal }
         )
           .then((response) => response.json())
           .then((data) => osmtogeojson(data))
           .then((geojson) => {
-            // Filter points within the isochrone
             geojson.features = geojson.features.filter((feature) => {
               const point = turf.point(feature.geometry.coordinates);
               return turf.booleanPointInPolygon(point, isochronePolygon);
             });
 
+            let isochroneKey = "";
+
+            if (index === 0) {
+              isochroneKey = "5min";
+            } else if (index === 1) {
+              isochroneKey = "10min";
+            } else if (index === 2) {
+              isochroneKey = "15min";
+            }
+
+            totals[isochroneKey] = totals[isochroneKey] || {};
+            totals[isochroneKey]["total"] =
+              (totals[isochroneKey]["total"] || 0) + geojson.features.length;
+            totals[isochroneKey][categoryKey] =
+              (totals[isochroneKey][categoryKey] || 0) +
+              geojson.features.length;
+            poiCountsPerIsochrone[isochroneKey] =
+              poiCountsPerIsochrone[isochroneKey] || {};
+            poiCountsPerIsochrone[isochroneKey][categoryKey] =
+              (poiCountsPerIsochrone[isochroneKey][categoryKey] || 0) +
+              geojson.features.length;
             return {
               sourceId,
               categoryKey,
               subcategoryKey,
               maki,
               geojson,
-              categoryColor, // Pass the categoryColor as a parameter
+              categoryColor,
             };
           });
 
@@ -60,10 +103,8 @@ export async function addOSMPOIs(map, isochrones, signal) {
       }
     }
 
-    // Execute batched requests for each category in parallel
     const results = await Promise.all(batchedQueries);
 
-    // Create sources and layers for each category
     const sources = {};
     const layers = [];
 
@@ -77,15 +118,12 @@ export async function addOSMPOIs(map, isochrones, signal) {
         categoryColor,
       }) => {
         if (map.getSource(sourceId)) {
-          // Skip adding source if it already exists
           return;
         }
-
         sources[sourceId] = {
           type: "geojson",
           data: geojson,
         };
-
         layers.push(
           {
             id: `${sourceId}-icons`,
@@ -117,7 +155,8 @@ export async function addOSMPOIs(map, isochrones, signal) {
           }
         );
       }
-    ); // Add sources and layers to the map
+    );
+
     Object.keys(sources).forEach((sourceId) => {
       map.addSource(sourceId, sources[sourceId]);
     });
@@ -126,9 +165,29 @@ export async function addOSMPOIs(map, isochrones, signal) {
       map.addLayer(layer);
     });
 
-    // Wait for the layers to be rendered before proceeding to the next isochrone
     await new Promise((resolve) => {
       map.once("render", resolve);
     });
-  }
+
+    const formattedIsochrone_5min = categories.map((category) =>
+      createFormattedObject("5min", category)
+    );
+    const formattedIsochrone_10min = categories.map((category) =>
+      createFormattedObject("10min", category)
+    );
+    const formattedIsochrone_15min = categories.map((category) =>
+      createFormattedObject("15min", category)
+    );
+    Isochrone_5min.push(...formattedIsochrone_5min);
+    Isochrone_10min.push(...formattedIsochrone_10min);
+    Isochrone_15min.push(...formattedIsochrone_15min);
+  } //End of for loop
+
+
+console.log("Isochrone_15min:", Isochrone_15min);
+console.log("Isochrone_10min:", Isochrone_10min);
+console.log("Isochrone_5min:", Isochrone_5min);
+console.log("Final index value:", index);
+
+  return { Isochrone_5min, Isochrone_10min, Isochrone_15min };
 }

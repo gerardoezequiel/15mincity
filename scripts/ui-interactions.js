@@ -76,7 +76,7 @@ export function addEventListeners(
     });
 
     // Add new layers
-    // addPopulationLayer(map, isochrones);
+    //addPopulationLayer(map, isochrones);
     // addOpenTripLayer(map, isochrones);
     // addOSMBuildings(map, isochrones);
     // addMapboxPOIs(map, isochrones);

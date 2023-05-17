@@ -31,9 +31,9 @@
     {
       "path" : "scripts/ui-interactions.js",
       "mimeType" : "text/javascript",
-      "lastUpdated" : 1684260602,
-      "checksum" : "2c83033e61d0fdc54aefb373d4ab8b70",
-      "fileSize" : 4009
+      "lastUpdated" : 1684314700,
+      "checksum" : "a2113524ae403fcc90f666b0978aa2db",
+      "fileSize" : 4008
     },
     {
       "path" : ".git/objects/71/1279966c12b05ae9af4fbba457a11462e54181",
@@ -73,9 +73,9 @@
     {
       "path" : "scripts/03-osm-pois.js",
       "mimeType" : "text/javascript",
-      "lastUpdated" : 1684258017,
-      "checksum" : "f2e1441dc9ebe631edce9ed1ee01ce62",
-      "fileSize" : 4080
+      "lastUpdated" : 1684313276,
+      "checksum" : "6508b1a638e3219778f7f2380e190638",
+      "fileSize" : 5925
     },
     {
       "path" : ".git/hooks/update.sample",
@@ -104,6 +104,13 @@
       "lastUpdated" : 1684077565,
       "checksum" : "1fe0189793f3a5f530a40fbf73ae2a3c",
       "fileSize" : 1848
+    },
+    {
+      "path" : "scripts/format-data.txt",
+      "mimeType" : "text/plain",
+      "lastUpdated" : 1684290404,
+      "checksum" : "d0d263bb9c824fc8148a3707491ad4ab",
+      "fileSize" : 1072
     },
     {
       "path" : ".git/hooks/pre-applypatch.sample",
@@ -234,7 +241,7 @@
     {
       "path" : "scripts/00-app.js",
       "mimeType" : "text/javascript",
-      "lastUpdated" : 1684255779,
+      "lastUpdated" : 1684272687,
       "checksum" : "5f65d720048ac31e08cbb9f76b9e88ee",
       "fileSize" : 2522
     },
@@ -281,6 +288,13 @@
       "fileSize" : 673
     },
     {
+      "path" : "libs/anychart-polar.min.js",
+      "mimeType" : "text/javascript",
+      "lastUpdated" : 1684266630,
+      "checksum" : "6871d114b896285b288ab2c9b40594ae",
+      "fileSize" : 46799
+    },
+    {
       "path" : ".git/objects/9c/b6e90ce1845658fa7806f162c3061a103f7b82",
       "mimeType" : "application/octet-stream",
       "lastUpdated" : 1682211328,
@@ -325,9 +339,9 @@
     {
       "path" : "scripts/03-poi-sidebar.js",
       "mimeType" : "text/javascript",
-      "lastUpdated" : 1684203644,
-      "checksum" : "6dd7ef23d3fcc68fc9bc8962aac97464",
-      "fileSize" : 644
+      "lastUpdated" : 1684272648,
+      "checksum" : "e6426bdf7578b2b0d9a3ed49b195f30c",
+      "fileSize" : 1078
     },
     {
       "path" : ".git/logs/refs/remotes/origin/main",
@@ -335,6 +349,13 @@
       "lastUpdated" : 1682211336,
       "checksum" : "10a440e788d43814ea142b3c20126a25",
       "fileSize" : 152
+    },
+    {
+      "path" : "scripts/03-poi-chart.js",
+      "mimeType" : "text/javascript",
+      "lastUpdated" : 1684286295,
+      "checksum" : "ba188b51596429f2c06521c21bef777b",
+      "fileSize" : 3076
     },
     {
       "path" : ".git/objects/97/82877683a85448bf94a379466f8e05c2846ebb",
@@ -430,9 +451,9 @@
     {
       "path" : "styles/main.css",
       "mimeType" : "text/css",
-      "lastUpdated" : 1684209069,
-      "checksum" : "210b7e0f513dcb64de7afefa63c9fa91",
-      "fileSize" : 3290
+      "lastUpdated" : 1684272638,
+      "checksum" : "93a21322a5ee3e2b9fba3354b561eec5",
+      "fileSize" : 3399
     },
     {
       "path" : "scripts/ui-legend.js",
@@ -472,9 +493,9 @@
     {
       "path" : "index.html",
       "mimeType" : "text/html",
-      "lastUpdated" : 1684225400,
-      "checksum" : "b26bc67abb6228646af8137e0b052009",
-      "fileSize" : 2428
+      "lastUpdated" : 1684268777,
+      "checksum" : "3fd1d8db3fe3b73b383f06108a221ed5",
+      "fileSize" : 2549
     },
     {
       "path" : ".git/description",
@@ -514,9 +535,9 @@
     {
       "path" : "scripts/00-isochrone.js",
       "mimeType" : "text/javascript",
-      "lastUpdated" : 1684237602,
-      "checksum" : "dda7d7cc44aee78143a9c7e4bc9ace7a",
-      "fileSize" : 2307
+      "lastUpdated" : 1684285434,
+      "checksum" : "51ab4f53cb0f2f9e380ea5edbe4b3f66",
+      "fileSize" : 2463
     },
     {
       "path" : ".git/logs/refs/heads/main",
