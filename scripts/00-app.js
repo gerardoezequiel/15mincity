@@ -18,7 +18,7 @@ mapboxgl.accessToken =
 
 const map = new mapboxgl.Map({
   container: "map",
-  style: "mapbox://styles/geraezemc/clhme3gc101qe01pgf68n2vo8",
+  style: "mapbox://styles/geraezemc/clgqzb9q4000g01pg82ok4yfw",
   center: [-0.133583, 51.524776], // UCL coordinates
   zoom: 13,
 });

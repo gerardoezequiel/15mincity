@@ -99,7 +99,7 @@ export function addMapboxBuildings3D(map, isochrone) {
       ],
       "fill-extrusion-height": ["get", "height"],
       "fill-extrusion-base": ["get", "min_height"],
-      "fill-extrusion-opacity": 0.2,
+      "fill-extrusion-opacity": 0.3,
     },
     
   });

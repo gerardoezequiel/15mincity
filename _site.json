@@ -122,8 +122,8 @@
     {
       "path" : "scripts/02-mapbox-buildings.js",
       "mimeType" : "text/javascript",
-      "lastUpdated" : 1684393205,
-      "checksum" : "4181463f08990e0f059239979363b0ff",
+      "lastUpdated" : 1684398545,
+      "checksum" : "5647a64ddafe1ec2717afa84a87ee4b5",
       "fileSize" : 3513
     },
     {
@@ -234,8 +234,8 @@
     {
       "path" : "scripts/00-app.js",
       "mimeType" : "text/javascript",
-      "lastUpdated" : 1684392912,
-      "checksum" : "40c73241e9558f815f3a922f38cbdf4d",
+      "lastUpdated" : 1684398912,
+      "checksum" : "fa446416fe121671befb36b21c11cb34",
       "fileSize" : 2518
     },
     {
