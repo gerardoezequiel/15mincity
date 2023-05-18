@@ -332,9 +332,9 @@
     {
       "path" : "scripts/03-poi-sidebar.js",
       "mimeType" : "text/javascript",
-      "lastUpdated" : 1684390948,
-      "checksum" : "e6426bdf7578b2b0d9a3ed49b195f30c",
-      "fileSize" : 1078
+      "lastUpdated" : 1684394435,
+      "checksum" : "374939610f40b32925cc5179590318f5",
+      "fileSize" : 2605
     },
     {
       "path" : ".git/logs/refs/remotes/origin/main",
