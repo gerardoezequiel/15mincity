@@ -78,7 +78,7 @@ export async function addOSMBuildings(map, isochrones) {
         "fill-extrusion-color": ["get", "color"],
         "fill-extrusion-height": ["*", ["get", "height"], 1.5],
         "fill-extrusion-base": ["get", "min_height"],
-        "fill-extrusion-opacity": 0.6,
+        "fill-extrusion-opacity": 0.2,
       },
     });
   }

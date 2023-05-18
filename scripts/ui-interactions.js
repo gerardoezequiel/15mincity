@@ -78,7 +78,7 @@ export function addEventListeners(
     // Add new layers
     //addPopulationLayer(map, isochrones);
     // addOpenTripLayer(map, isochrones);
-    // addOSMBuildings(map, isochrones);
+    addOSMBuildings(map, isochrones);
     // addMapboxPOIs(map, isochrones);
 
 
@@ -98,7 +98,7 @@ export function addEventListeners(
   });
 
   // Update isochrones when the map is clicked
-  map.on("click", (e) => {
+  map.on("dblclick", (e) => {
     const newCenter = e.lngLat;
     marker.setLngLat(newCenter);
     updateIsochronesHandler(newCenter);

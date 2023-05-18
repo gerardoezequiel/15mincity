@@ -85,13 +85,13 @@ body {
 #poi-sidebar:not(.collapsed) {
   width: 350px;
 }
-/*
+
 #population-sidebar.collapsed,
 #buildings-sidebar.collapsed,
 #poi-sidebar.collapsed {
-  transform: translateX(-100%); /* changed from translateX(100%) 
+  transform: translateX(-100%); /* changed from translateX(100%) */
   width: 0;}
-*/
+
 
 #population-sidebar-toggle,
 #buildings-sidebar-toggle,

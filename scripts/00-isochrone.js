@@ -55,8 +55,8 @@ export async function updateIsochrones(
             "fill-color": viridisScale(
               (index + 1) / (sortedMinutes.length + 1)
             ),
-            "fill-opacity": 0.2,
-            "fill-outline-color": "rgba(255, 255, 2, 0)",
+            "fill-opacity": 0.1,
+            "fill-outline-color": "rgba(255, 255, 2, 0.8)",
           },
         },
         "poi-label"
@@ -70,6 +70,7 @@ export async function updateIsochrones(
           "text-color": "black",
         },
       });
+      "airport-label";
     }
 
     map.setLayerZoomRange(layerId, 4, 22);

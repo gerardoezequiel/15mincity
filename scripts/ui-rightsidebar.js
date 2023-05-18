@@ -1,4 +1,4 @@
-import { townCenters } from "./zz-15mincategories.js";
+import { wardCoordinates } from "./zz-15mincategories.js";
 
 export function createRightSidebar(
   map,
@@ -53,7 +53,7 @@ export function createRightSidebar(
   );
   sidebar.appendChild(contentContainer);
 
-  for (const placeName in townCenters) {
+  for (const placeName in wardCoordinates) {
     const contentElement = document.createElement("div");
     contentElement.textContent = placeName;
     contentElement.classList.add(
@@ -67,7 +67,7 @@ export function createRightSidebar(
     contentElement.addEventListener("click", () => {
       handleContentInteraction(
         map,
-        townCenters[placeName],
+        wardCoordinates[placeName],
         marker,
         updateIsochronesHandler,
         currentProfile

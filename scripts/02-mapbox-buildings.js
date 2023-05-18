@@ -99,14 +99,12 @@ export function addMapboxBuildings3D(map, isochrone) {
       ],
       "fill-extrusion-height": ["get", "height"],
       "fill-extrusion-base": ["get", "min_height"],
-      "fill-extrusion-opacity": 0.9,
+      "fill-extrusion-opacity": 0.2,
     },
+    
   });
 
-  // Fly-to animation
   map.on("click", (e) => {
-    map.flyTo({ center: e.lngLat, zoom: 14, speed: 1.5 });
-
     // Query the building layer to get features at the click point
     const features = map.queryRenderedFeatures(e.point, {
       layers: ["3D Buildings"],
