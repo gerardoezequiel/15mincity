@@ -1,118 +1,135 @@
-
 export function createPoiChart() {
-  // Inject CSS
-  const css = `
-   html, body {
-    width: 100vw; 
-    height: 100vh; 
-    margin: 0;
-    padding: 0;
-  }
-  #container {
-    width: 100%;
-    height: 100%;
-    margin: 0; 
-    padding: 0; 
-  }
-  .anychart-credits { 
-    display: none !important; 
-  }
-  `;
-  
- 
-const style = document.createElement("style");
-style.innerHTML = css;
-document.head.appendChild(style);
-
-const container = document.createElement("div");
-container.id = "container";
-container.style.width = "800px"; // Increase the width of the container
-container.style.height = "800px"; // Increase the height of the container
-document.body.appendChild(container);
-
-
-  // Create chart
   const chart = anychart.polar();
 
-  // Setup chart configuration
-  chart.width("100%"); // Increase the width of the chart
-  chart.height("100%"); // Increase the height of the chart
+  // setup chart appearance settings
   chart.startAngle(-27);
   chart.innerRadius("10%");
-  chart.yScale().minimum(0).maximum(10);
+
+  // setup chart scales settings
+  chart.yScale().minimum(0).maximum(100);
+  chart.yScale().ticks().interval(20);
   chart.xScale("ordinal");
-  chart.xScale().names("name");
+  chart.xScale().names("Category");
   chart.sortPointsByX(true);
+
+  // setup chart interactivity and tooltip settings
   chart.interactivity().hoverMode("single");
   chart.tooltip().displayMode("union");
-  chart.tooltip().titleFormat("{%name}");
-  chart.yAxis(false);
+  chart.tooltip().titleFormat("{%Category}");
+
+  // setup chart axes and grid settings
+  chart.yAxis().labels().format("{%Value}%");
+  chart.yAxis().ticks().stroke("#ffffff");
+  chart.yAxis().minorTicks().stroke("#ffffff");
   chart
     .xAxis()
     .labels()
     .padding(7)
-    .fontSize(10)
+    .fontSize(16)
+    .fontWeight("bold")
     .hAlign("center")
-    .wordWrap("normal");
-  chart.xAxis().fill("rgb(237, 236, 239)").stroke("none");
-  chart.xAxis().ticks().length("100%");
+    .wordWrap("normal")
+    .textOverflow("...");
+  chart.xAxis().fill("#E0E0E0").stroke("none");
+  chart.xAxis().ticks().length("50%").stroke("rgba(89, 161, 79, 0.05)");
 
-  // Create polygon series
-  const dataSet = anychart.data.set([
-    { name: "Mobility", applicant: 5 },
-    { name: "Commerce", applicant: 5 },
-    { name: "Healthcare", applicant: 7 },
-    { name: "Education", applicant: 7 },
-    { name: "Entertainment", applicant: 10 },
+  // setup chart legend settings
+  var legend = chart.legend();
+  legend.enabled(true);
+  legend.positionMode("outside");
+  legend.itemsLayout("vertical");
+  legend.position("bottom");
+  legend.align("left");
+  legend.margin().top(-30);
+  legend.itemsSpacing(5);
+
+  // create polygon series
+  var dataSet5min = anychart.data.set([
+    { Category: "Mobility", percentage: 57.692307692307686 },
+    { Category: "Commerce", percentage: 7.6923076923076925 },
+    { Category: "Healthcare", percentage: 0 },
+    { Category: "Education", percentage: 34.61538461538461 },
+    { Category: "Entertainment", percentage: 0 },
   ]);
-  const polygonSeries = chart.polygon(
-    dataSet.mapAs({ x: "x", value: "applicant" })
+
+  var dataSet10min = anychart.data.set([
+    { Category: "Mobility", percentage: 62.28070175438597 },
+    { Category: "Commerce", percentage: 14.912280701754385 },
+    { Category: "Healthcare", percentage: 2.631578947368421 },
+    { Category: "Education", percentage: 16.666666666666664 },
+    { Category: "Entertainment", percentage: 3.508771929824561 },
+  ]);
+
+  var dataSet15min = anychart.data.set([
+    { Category: "Mobility", percentage: 61.15702479338842 },
+    { Category: "Commerce", percentage: 20.24793388429752 },
+    { Category: "Healthcare", percentage: 4.545454545454546 },
+    { Category: "Education", percentage: 10.330578512396695 },
+    { Category: "Entertainment", percentage: 3.71900826446281 },
+  ]);
+
+  var polygonSeries5min = chart.polygon(
+    dataSet5min.mapAs({ x: "Category", value: "percentage" })
   );
-  polygonSeries.name("Applicant");
-  polygonSeries.color("#CD4A2D");
-  polygonSeries.fill("rgba(180, 180, 180, 0.3)");
-  polygonSeries.zIndex(31);
-  polygonSeries
+  polygonSeries5min.name("5min");
+  polygonSeries5min.fill("rgba(89, 161, 79, 0.05)");
+  polygonSeries5min.color("rgba(89, 161, 79, 0.8)");
+  polygonSeries5min.zIndex(31);
+  polygonSeries5min
     .labels()
-    .enabled(true)
-    .fontColor("#CD4A2D")
-    .fontSize(11)
-    .fontWeight("bold");
-  polygonSeries
+    .enabled(false)
+    .fontColor("#000")
+    .fontSize(8)
+    .fontWeight("bold")
+    .format("{%Value}%")
+    .textOverflow("...");
+  polygonSeries5min
     .legendItem()
-    .iconFill("#CD4A2D")
+    .iconFill("rgba(89, 161, 79, 0.8)")
     .iconType("line")
-    .iconStroke("6 #CD4A2D");
-  // Create range column series
-  const companySeries = chart.rangeColumn(
-    dataSet.mapAs({ x: "x", high: "company_high", low: "company_low" })
+    .iconStroke("6 rgba(89, 161, 79, 0.8)");
+
+  var polygonSeries10min = chart.polygon(
+    dataSet10min.mapAs({ x: "Category", value: "percentage" })
   );
-  companySeries.pointWidth("85%");
-  companySeries.name("Company average");
-  companySeries.color("#E2DFE0");
+  polygonSeries10min.name("10min");
+  polygonSeries10min.fill("rgba(242, 142, 43, 0.05)");
+  polygonSeries10min.color("rgba(242, 142, 43, 0.8)");
+  polygonSeries10min.zIndex(31);
+  polygonSeries10min
+    .labels()
+    .enabled(false)
+    .fontColor("#000")
+    .fontSize(8)
+    .fontWeight("light")
+    .format("{%Value}%")
+    .textOverflow("...");
+  polygonSeries10min
+    .legendItem()
+    .iconFill("rgba(242, 142, 43, 0.8)")
+    .iconType("line")
+    .iconStroke("6 rgba(242, 142, 43, 0.8)");
 
-  // Set chart container id
-  chart.container("container");
+  var polygonSeries15min = chart.polygon(
+    dataSet15min.mapAs({ x: "Category", value: "percentage" })
+  );
+  polygonSeries15min.name("15min");
+  polygonSeries15min.fill("rgba(225, 87, 89, 0.05)");
+  polygonSeries15min.color("rgba(225, 87, 89, 0.8)");
+  polygonSeries15min.zIndex(31);
+  polygonSeries15min
+    .labels()
+    .enabled(false)
+    .fontColor("#000")
+    .fontSize(8)
+    .fontWeight("bold")
+    .format("{%Value}%")
+    .textOverflow("...");
+  polygonSeries15min
+    .legendItem()
+    .iconFill("rgba(225, 87, 89, 0.8)")
+    .iconType("line")
+    .iconStroke("6 rgba(225, 87, 89, 0.8)");
 
-  // Make even/odd xAxis labels coloring
-  chart.listen("chartDraw", function () {
-    const stage = chart.container().getStage();
-    stage.suspend();
-    const count = chart.xAxis().labels().getLabelsCount();
-    for (let i = 0; i < count; i++) {
-      const color = i % 2 ? "#CD4A2D" : "#4C4C4C";
-      const label = chart.xAxis().labels().getLabel(i);
-      if (label) {
-        label.fontColor(color);
-        label.draw();
-      }
-    }
-    stage.resume();
-  });
-
-  // Initiate chart drawing
-  chart.draw();
-
-  // Return the created chart instance
   return chart;
 }

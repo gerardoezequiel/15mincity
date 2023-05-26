@@ -1,8 +1,3 @@
-import {
-  buildingTypeCategories,
-  categoryColors,
-} from "./zz-15mincategories.js";
-
 export async function addOSMBuildings(map, isochrones) {
   const sourceId = `buildings`;
   const layerId = `buildings`;
@@ -21,6 +16,8 @@ export async function addOSMBuildings(map, isochrones) {
   const isochronePolygons = isochrones.map((iso) =>
     turf.polygon(iso.geometry.coordinates)
   );
+
+  isochronePolygons.sort((a, b) => turf.area(a) - turf.area(b)); // Sort by area
 
   const bbox = turf.bbox(
     turf.multiPolygon(isochronePolygons.map((p) => p.geometry.coordinates))
@@ -42,6 +39,9 @@ export async function addOSMBuildings(map, isochrones) {
   const data = await response.json();
   const buildingsGeojson = osmtogeojson(data);
 
+  const viridisScale = d3.interpolateViridis;
+  const sortedMinutes = Array.from([5, 10, 15]).sort((a, b) => a - b); // Sort by minutes
+
   buildingsGeojson.features = buildingsGeojson.features.filter((feature) => {
     return isochronePolygons.some((polygon) =>
       turf.booleanIntersects(feature, polygon)
@@ -49,16 +49,27 @@ export async function addOSMBuildings(map, isochrones) {
   });
 
   buildingsGeojson.features.forEach((feature) => {
-    const buildingType = feature.properties.building;
-    let buildingCategory = "Unknown";
-    for (const category in buildingTypeCategories) {
-      if (buildingTypeCategories[category].includes(buildingType)) {
-        buildingCategory = category;
+    let isochroneIndex = null;
+
+    // Determine which isochrone the building is within
+    for (let i = 0; i < isochronePolygons.length; i++) {
+      if (turf.booleanIntersects(feature, isochronePolygons[i])) {
+        // If the building is within this isochrone, use its color
+        isochroneIndex = i;
         break;
       }
     }
-    feature.properties.category = buildingCategory;
-    feature.properties.color = categoryColors[buildingCategory];
+
+    if (isochroneIndex !== null) {
+      // If the building is within an isochrone, color it with the viridisScale
+      const color = viridisScale(
+        1 - (isochroneIndex + 1) / (sortedMinutes.length + 1)
+      );
+      feature.properties.color = color;
+    } else {
+      // If the building is not within any isochrone, color it with a default color
+      feature.properties.color = "gray";
+    }
   });
 
   // Check if the source and layer already exist before adding them
@@ -76,9 +87,9 @@ export async function addOSMBuildings(map, isochrones) {
       source: sourceId,
       paint: {
         "fill-extrusion-color": ["get", "color"],
-        "fill-extrusion-height": ["*", ["get", "height"], 1.5],
+        "fill-extrusion-height": ["*", ["get", "height"], 1.7],
         "fill-extrusion-base": ["get", "min_height"],
-        "fill-extrusion-opacity": 0.2,
+        "fill-extrusion-opacity": 0.3,
       },
     });
   }

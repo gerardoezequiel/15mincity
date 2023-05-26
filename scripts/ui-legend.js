@@ -1,3 +1,4 @@
+import { poiCategories, categoryColors } from "./zz-15mincategories.js";
 export function createLegend(map, minutesArray) {
   let legend = document.getElementById("legend");
 
@@ -6,7 +7,6 @@ export function createLegend(map, minutesArray) {
     legend.id = "legend";
     legend.className = "mapboxgl-ctrl mapboxgl-ctrl-group";
 
-    // Add the legend control to the map
     class LegendControl {
       onAdd() {
         return legend;
@@ -24,13 +24,11 @@ export function createLegend(map, minutesArray) {
     const legendControl = new LegendControl();
     map.addControl(legendControl, "bottom-right");
   } else {
-    // If the legend already exists, clear its contents
     legend.innerHTML = "";
   }
 
   const viridisScale = d3.interpolateViridis;
 
-  // Sort the array in ascending order to ensure lower minute value at the top
   minutesArray
     .sort((a, b) => a - b)
     .forEach((minutes, index) => {
@@ -62,4 +60,90 @@ export function createLegend(map, minutesArray) {
 
       legend.appendChild(row);
     });
+
+  for (const [categoryKey, categoryValue] of Object.entries(poiCategories)) {
+    const categoryColor = categoryColors[categoryKey];
+
+    const categoryToggle = document.createElement("button");
+    categoryToggle.classList.add(
+      "flex",
+      "items-center",
+      "mb-2",
+      "focus:outline-none"
+    );
+    categoryToggle.addEventListener("click", toggleCategoryVisibility);
+
+    const categoryCircle = document.createElement("div");
+    categoryCircle.classList.add("w-4", "h-4", "mr-2", "rounded-full");
+    categoryCircle.style.backgroundColor = categoryColor;
+    categoryToggle.appendChild(categoryCircle); // Append the circle before the label
+
+    const categoryLabel = document.createElement("span");
+    categoryLabel.classList.add("text-sm", "font-medium");
+    categoryLabel.textContent = categoryKey;
+    categoryToggle.appendChild(categoryLabel); // Append the label after the circle
+
+    legend.appendChild(categoryToggle);
+
+    const categoryIcon = document.createElement("i");
+    categoryIcon.classList.add("fas", "fa-chevron-down", "ml-auto");
+    categoryToggle.appendChild(categoryIcon);
+
+    const subcategoriesList = document.createElement("ul");
+    subcategoriesList.classList.add("ml-4");
+    subcategoriesList.style.display = "none";
+    legend.appendChild(subcategoriesList);
+
+    for (const [subcategoryKey, { osmTag, maki }] of Object.entries(
+      categoryValue
+    )) {
+      const subcategoryButton = document.createElement("button");
+      subcategoryButton.classList.add(
+        "flex",
+        "items-center",
+        "mb-1",
+        "pl-2",
+        "focus:outline-none"
+      );
+      subcategoryButton.addEventListener("click", toggleSubcategoryVisibility);
+      subcategoriesList.appendChild(subcategoryButton);
+
+      const subcategoryLabel = document.createElement("span");
+      subcategoryLabel.classList.add("text-xs");
+      subcategoryLabel.textContent = subcategoryKey;
+      subcategoryButton.appendChild(subcategoryLabel);
+
+      subcategoryButton.dataset.category = categoryKey;
+      subcategoryButton.dataset.subcategory = subcategoryKey;
+    }
+  }
+
+  function toggleCategoryVisibility(event) {
+    const categoryToggle = event.currentTarget;
+    const categoryIcon = categoryToggle.querySelector("i");
+    const subcategoriesList = categoryToggle.nextElementSibling;
+    const isOpen = subcategoriesList.style.display === "block";
+
+    subcategoriesList.style.display = isOpen ? "none" : "block";
+
+    categoryToggle.classList.toggle("active");
+
+    categoryIcon.classList.toggle("fa-chevron-down");
+    categoryIcon.classList.toggle("fa-chevron-up");
+  }
+
+  function toggleSubcategoryVisibility(event) {
+    const subcategoryButton = event.currentTarget;
+    const categoryKey = subcategoryButton.dataset.category;
+    const subcategoryKey = subcategoryButton.dataset.subcategory;
+    const isSubcategoryActive = subcategoryButton.classList.contains("active");
+
+    subcategoryButton.classList.toggle("active");
+
+    handleSubcategoryVisibility(
+      categoryKey,
+      subcategoryKey,
+      isSubcategoryActive
+    );
+  }
 }

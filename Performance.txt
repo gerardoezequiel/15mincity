@@ -1,0 +1,11 @@
+Spatial Indexing: Use a spatial indexing library like RBush or use the in-built spatial indexing of a library like geopandas if you're preprocessing your data in Python. This can drastically reduce the number of intersection checks needed.
+
+Preprocessing: Do the intersection checks and color assignment as a preprocessing step, either on your server or as a separate script. You could save the results in a GeoJSON or similar format, and then simply load that data when needed in your Mapbox GL JS application.
+
+Turf.js Optimization: Turf.js's booleanIntersects function can be heavy for large datasets. Try to minimize the data (number of isochrones and buildings) that you pass to this function. If your isochrones are nested, you might want to start checking from the innermost isochrone first, then if a building is found in one isochrone, you can break the loop. This can reduce the number of checks for buildings located in the inner isochrones.
+
+Web Workers: For client-side operations, if your intersection checks are causing your page to freeze or become unresponsive, you could look into moving this processing into a Web Worker. Web Workers allow you to run JavaScript in the background without blocking the user interface.
+
+Tiered Rendering: You can prioritize rendering buildings that are in the current viewport and load others as needed.
+
+Adjusting Color Scales: Depending on your use case, you may be able to get away with using fewer colors (i.e., fewer isochrones), which might allow you to simplify your calculations.

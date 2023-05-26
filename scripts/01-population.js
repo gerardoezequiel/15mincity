@@ -1,5 +1,4 @@
 export function addPopulationLayer(map, isochrones) {
-  
   const layers = [
     {
       id: "totalPopulation",
@@ -9,7 +8,7 @@ export function addPopulationLayer(map, isochrones) {
       color: "#f28cb1",
       range: [0, 565],
       label: "Total population",
-    },
+    }/*,
     {
       id: "childrenUnder5",
       url: "mapbox://geraezemc.7wavbrvk",
@@ -18,7 +17,6 @@ export function addPopulationLayer(map, isochrones) {
       color: "#ffcc00",
       range: [0, 62],
       label: "Children under 5",
-
     },
     {
       id: "youth15to24",
@@ -29,7 +27,6 @@ export function addPopulationLayer(map, isochrones) {
       range: [0, 135],
       label: "Youth 15 to 24",
     },
-
     {
       id: "elderlyPopulation",
       url: "mapbox://geraezemc.2wolfa7a",
@@ -38,7 +35,7 @@ export function addPopulationLayer(map, isochrones) {
       color: "#ff0000",
       range: [0, 221],
       label: "Elderly",
-    },
+    },*/
   ];
 
   layers.forEach(
@@ -98,7 +95,6 @@ export function addPopulationLayer(map, isochrones) {
             "source-layer": layer,
             maxzoom: 15,
             paint: {
-              // Increase the heatmap weight based on frequency and property magnitude
               "heatmap-weight": [
                 "interpolate",
                 ["linear"],
@@ -108,8 +104,6 @@ export function addPopulationLayer(map, isochrones) {
                 range[1],
                 1,
               ],
-              // Increase the heatmap color weight weight by zoom level
-              // heatmap-intensity is a multiplier on top of heatmap-weight
               "heatmap-intensity": [
                 "interpolate",
                 ["linear"],
@@ -119,9 +113,6 @@ export function addPopulationLayer(map, isochrones) {
                 15,
                 3,
               ],
-              // Color ramp for heatmap. Domain is 0 (low) to 1 (high).
-              // Begin color ramp at 0-stop with a 0-transparancy color
-              // to create a blur-like effect.
               "heatmap-color": [
                 "interpolate",
                 ["linear"],
@@ -133,7 +124,6 @@ export function addPopulationLayer(map, isochrones) {
                 1,
                 color,
               ],
-              // Adjust the heatmap radius by zoom level
               "heatmap-radius": [
                 "interpolate",
                 ["linear"],
@@ -143,7 +133,6 @@ export function addPopulationLayer(map, isochrones) {
                 15,
                 30,
               ],
-              // Transition from heatmap to circle layer by zoom level
               "heatmap-opacity": [
                 "interpolate",
                 ["linear"],
@@ -156,8 +145,6 @@ export function addPopulationLayer(map, isochrones) {
             },
             filter: ["all", ["within", isochrone]],
           });
-
-          
         }
       });
     }

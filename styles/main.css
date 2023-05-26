@@ -129,7 +129,7 @@ body {
 
 
 
-.mapbox-directions-profile {
+  .mapbox-directions-profile {
   background: #fff;
   margin: 2px 0 0;
   padding: 2px;
@@ -141,19 +141,21 @@ body {
   top: -45px; /* This will move it to the top of the parent container */
 }
 
-.mapbox-directions-component-keyline > div:not(.mapbox-directions-profile) {
+
+/*.mapbox-directions-component-keyline > div:not(.mapbox-directions-profile) {
   display: none;
 }
 
 .directions-icon.directions-icon-reverse.directions-reverse.js-reverse-inputs {
   display: none;
-}
+}*/
 
 #legend {
   padding: 10px;
   background-color: white;
   border-radius: 5px;
-  width:120px;
+  width:240px;
+  height: auto;
 }
 
 .legend-row {
@@ -195,4 +197,21 @@ body {
   justify-content: center;
   align-items: center;
   height: 100%;
+}
+
+mapboxgl-ctrl {
+  display: none !important;
+}
+
+.mapbox-directions-profile {
+  background: #fff;
+  margin: -640px -820px 5px;
+  padding: 2px;
+  border-radius: 15px;
+}
+
+.mapboxgl-ctrl-group button {
+  background-color: transparent;
+  border: 0;
+  box-sizing: border-box;
 }

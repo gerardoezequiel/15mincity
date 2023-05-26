@@ -1,6 +1,6 @@
 export const poiCategories = {
   Mobility: {
-    bus_stop: { osmTag: "highway=bus_stop", maki: "bus" },
+   bus_stop: { osmTag: "highway=bus_stop", maki: "bus" },
     tram_stop: { osmTag: "railway=tram_stop", maki: "rail-light" },
     underground: { osmTag: "railway=subway_entrance", maki: "rail-metro" },
     train_station: { osmTag: "railway=station", maki: "rail" },

@@ -30,12 +30,12 @@ export function addAllControls(map, center, marker) {
      accessToken: mapboxgl.accessToken,
      unit: "metric",
      profile: "mapbox/walking",
-     controls: { inputs: true, instructions: false },
+     controls: { inputs: true, instructions: true },
      interactive: false,
      coordinates: [marker.getLngLat().toArray(), null],
    });
 
-  map.addControl(directions, "bottom-right");
+  map.addControl(directions, "bottom-left");
   
   // Add zoom and rotation controls to the map.
   map.addControl(new mapboxgl.NavigationControl());

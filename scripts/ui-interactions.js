@@ -4,26 +4,48 @@ import { addOpenTripLayer } from "./xx-opentripmap.js";
 import { addOSMBuildings } from "./02-osm-buildings.js";
 import { addMapboxBuildings3D } from "./02-mapbox-buildings.js";
 import { addMapboxPOIs } from "./03-mapbox-poi.js";
-import { addOSMPOIs } from "./03-osm-pois.js"; // Import the addOSMPOIs function
+import { addOSMPOIs } from "./03-osm-pois.js";
 import { poiCategories } from "./zz-15mincategories.js";
+import { createPoiChart } from "./03-poi-chart.js";
 
 let currentProfile = "walking"; // Store the current profile
+let abortControllerOSM = new AbortController(); // Create a separate AbortController instance for OSM requests
 
-export function addEventListeners(
+export async function addEventListeners(
   marker,
   map,
   geocoder,
   directions,
-  geolocateControl
+  geolocateControl,
+  existingChart
 ) {
-  let abortControllerOSM = new AbortController(); // Create a separate AbortController instance for OSM requests
-
   const updateIsochronesHandler = async (lngLat, profile = currentProfile) => {
     // Cancel previous OSM requests if any
     abortControllerOSM.abort();
+    abortControllerOSM = new AbortController();
 
     // Update the marker position
     marker.setLngLat(lngLat);
+
+    const removeOSMPOILayers = () => {
+      const sources = map.getStyle().sources;
+      const layers = map.getStyle().layers;
+
+      for (const layer of layers) {
+        if (layer.id.includes("-poi")) {
+          map.removeLayer(layer.id);
+        }
+      }
+
+      for (const sourceId in sources) {
+        if (sourceId.includes("-poi")) {
+          map.removeSource(sourceId);
+        }
+      }
+    };
+
+    // Remove the old OSM POI layers and sources
+    removeOSMPOILayers();
 
     const isochrones = await updateIsochrones(
       map,
@@ -31,64 +53,20 @@ export function addEventListeners(
       profile
     );
 
-    // Remove the old layers
-    isochrones.forEach((_, index) => {
-      const populationLayerId = `population-layer-${index}`;
-      const poiLayerId = `poi-${index}`;
-      const buildingId = `buildings-${index}`;
-      const mapboxPoiId = `Mapbox-POI-${index}`;
-
-      if (map.getLayer(populationLayerId)) {
-        map.removeLayer(populationLayerId);
-      }
-
-      if (map.getLayer(poiLayerId)) {
-        map.removeLayer(poiLayerId);
-      }
-
-      if (map.getLayer(buildingId)) {
-        map.removeLayer(buildingId);
-      }
-
-      if (map.getLayer(mapboxPoiId)) {
-        map.removeLayer(mapboxPoiId);
-      }
-
-      for (const categoryKey of Object.keys(poiCategories)) {
-        for (const subcategoryKey of Object.keys(poiCategories[categoryKey])) {
-          const osmPoiID = `${index}-${categoryKey}-${subcategoryKey}-poi`;
-
-          const circleLayerId = `${osmPoiID}-icons`;
-          if (map.getLayer(circleLayerId)) {
-            map.removeLayer(circleLayerId);
-          }
-
-          const textLayerId = `${osmPoiID}-labels`;
-          if (map.getLayer(textLayerId)) {
-            map.removeLayer(textLayerId);
-          }
-
-          if (map.getSource(osmPoiID)) {
-            map.removeSource(osmPoiID); // Remove the source only if it exists
-          }
-        }
-      }
-    });
-
-    // Add new layers
+    // Remove the other layers if needed
     //addPopulationLayer(map, isochrones);
     // addOpenTripLayer(map, isochrones);
     addOSMBuildings(map, isochrones);
     // addMapboxPOIs(map, isochrones);
+    addOSMPOIs(map, isochrones, abortControllerOSM.signal);
 
+    // Update the data of the existing chart
+    const { dataSet5min, dataSet10min, dataSet15min } = poiCategories;
+    existingChart.data(dataSet5min.mapAs({ x: 'Category', value: 'percentage' }));
+    existingChart.data(dataSet10min.mapAs({ x: 'Category', value: 'percentage' }));
+    existingChart.data(dataSet15min.mapAs({ x: 'Category', value: 'percentage' }));
 
-    // Create a new AbortController instance for OSM
-    abortControllerOSM = new AbortController();
-
-    // Set up the signal from the AbortController
-    const signalOSM = abortControllerOSM.signal;
-
-    addOSMPOIs(map, isochrones, signalOSM);
+    existingChart.draw(); // Redraw the chart with updated data
   };
 
   // Update isochrones when marker is dragged
@@ -131,5 +109,16 @@ export function addEventListeners(
     updateIsochronesHandler(newCenter);
   });
 
-  return { updateIsochronesHandler, currentProfile };
+  // Create the POI chart and append it to the content container
+  const chartContainer = document.getElementById("chart-container");
+  const chart = await createPoiChart();
+  if (chart !== undefined) {
+    existingChart = chart; // Assign the created chart to existingChart
+    chart.container(chartContainer);
+    chart.draw();
+  } else {
+    console.error("Chart is undefined");
+  }
+
+  return { updateIsochronesHandler, currentProfile, existingChart };
 }

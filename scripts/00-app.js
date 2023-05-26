@@ -59,7 +59,7 @@ async function initializeMap() {
   addMapboxBuildings3D(map, isochrones); // Add the OSM data
   addOSMBuildings(map, isochrones);
   //addMapboxPOIs(map, isochrones); // Add the Mapbox POI layer
-  addOSMPOIs(map, isochrones);
+  //addOSMPOIs(map, isochrones);
   createLegend(map, [5, 10, 15]); // you can add here more isochrones to the legend
 }
 

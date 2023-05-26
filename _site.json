@@ -31,9 +31,9 @@
     {
       "path" : "scripts/ui-interactions.js",
       "mimeType" : "text/javascript",
-      "lastUpdated" : 1684393259,
-      "checksum" : "8084ec8b2aabe5dd6835f724dfcc737c",
-      "fileSize" : 4008
+      "lastUpdated" : 1684580838,
+      "checksum" : "ad43f8df7c516aa0df60037f584dd1c6",
+      "fileSize" : 3942
     },
     {
       "path" : ".git/objects/71/1279966c12b05ae9af4fbba457a11462e54181",
@@ -73,9 +73,9 @@
     {
       "path" : "scripts/03-osm-pois.js",
       "mimeType" : "text/javascript",
-      "lastUpdated" : 1684391413,
-      "checksum" : "6508b1a638e3219778f7f2380e190638",
-      "fileSize" : 5925
+      "lastUpdated" : 1684585996,
+      "checksum" : "3ad104900f80b3bef8d5b9303f8ec57d",
+      "fileSize" : 5698
     },
     {
       "path" : ".git/hooks/update.sample",
@@ -101,9 +101,16 @@
     {
       "path" : "scripts/ui-controls.js",
       "mimeType" : "text/javascript",
-      "lastUpdated" : 1684077565,
-      "checksum" : "1fe0189793f3a5f530a40fbf73ae2a3c",
-      "fileSize" : 1848
+      "lastUpdated" : 1684414553,
+      "checksum" : "eff6554153a256baf61c0457ddd3e847",
+      "fileSize" : 1846
+    },
+    {
+      "path" : "scripts/color",
+      "mimeType" : "application/octet-stream",
+      "lastUpdated" : 1684431857,
+      "checksum" : "fab576727c0bbb60c2b52fd59156715b",
+      "fileSize" : 677
     },
     {
       "path" : ".git/hooks/pre-applypatch.sample",
@@ -122,9 +129,9 @@
     {
       "path" : "scripts/02-mapbox-buildings.js",
       "mimeType" : "text/javascript",
-      "lastUpdated" : 1684398545,
-      "checksum" : "5647a64ddafe1ec2717afa84a87ee4b5",
-      "fileSize" : 3513
+      "lastUpdated" : 1684478200,
+      "checksum" : "9fa0bbfe046872d0a2ffe9ab218ebc8d",
+      "fileSize" : 4318
     },
     {
       "path" : ".DS_Store",
@@ -227,14 +234,21 @@
     {
       "path" : "scripts/02-osm-buildings.js",
       "mimeType" : "text/javascript",
-      "lastUpdated" : 1684392705,
-      "checksum" : "debce6bc4a66938ade7c0dd8fc927326",
-      "fileSize" : 2267
+      "lastUpdated" : 1684434580,
+      "checksum" : "dcb99cb047e287085a697c471c50a473",
+      "fileSize" : 2742
+    },
+    {
+      "path" : "Performance.txt",
+      "mimeType" : "text/plain",
+      "lastUpdated" : 1684430334,
+      "checksum" : "c4a3f42e556fc4245018403a257f3475",
+      "fileSize" : 1537
     },
     {
       "path" : "scripts/00-app.js",
       "mimeType" : "text/javascript",
-      "lastUpdated" : 1684399223,
+      "lastUpdated" : 1684584224,
       "checksum" : "fa446416fe121671befb36b21c11cb34",
       "fileSize" : 2518
     },
@@ -311,7 +325,7 @@
     {
       "path" : "scripts/03-mapbox-poi.js",
       "mimeType" : "text/javascript",
-      "lastUpdated" : 1684229090,
+      "lastUpdated" : 1684478622,
       "checksum" : "481961783935dfff8b60b1d8bdf81db3",
       "fileSize" : 2569
     },
@@ -332,9 +346,9 @@
     {
       "path" : "scripts/03-poi-sidebar.js",
       "mimeType" : "text/javascript",
-      "lastUpdated" : 1684394435,
-      "checksum" : "374939610f40b32925cc5179590318f5",
-      "fileSize" : 2605
+      "lastUpdated" : 1684582949,
+      "checksum" : "b4fe7953f71efa35470e65b4f683ce5a",
+      "fileSize" : 6106
     },
     {
       "path" : ".git/logs/refs/remotes/origin/main",
@@ -346,9 +360,9 @@
     {
       "path" : "scripts/03-poi-chart.js",
       "mimeType" : "text/javascript",
-      "lastUpdated" : 1684390948,
-      "checksum" : "ba188b51596429f2c06521c21bef777b",
-      "fileSize" : 3076
+      "lastUpdated" : 1684578269,
+      "checksum" : "e8e531748a7f2c3041c544b67384a365",
+      "fileSize" : 4187
     },
     {
       "path" : ".git/objects/97/82877683a85448bf94a379466f8e05c2846ebb",
@@ -444,23 +458,23 @@
     {
       "path" : "styles/main.css",
       "mimeType" : "text/css",
-      "lastUpdated" : 1684351931,
-      "checksum" : "6d024b2f086efb42ea47c37260dacd08",
-      "fileSize" : 3397
+      "lastUpdated" : 1684662168,
+      "checksum" : "5c1988519b1bc262d32e40e4975854b9",
+      "fileSize" : 3692
     },
     {
       "path" : "scripts/ui-legend.js",
       "mimeType" : "text/javascript",
-      "lastUpdated" : 1684384085,
-      "checksum" : "ea61fb36b70f3ad3c75f740fa72fbc69",
-      "fileSize" : 1843
+      "lastUpdated" : 1684611269,
+      "checksum" : "5f7324c21dcb2fcbce9b2fd7052d58f3",
+      "fileSize" : 4831
     },
     {
       "path" : "scripts/01-population.js",
       "mimeType" : "text/javascript",
-      "lastUpdated" : 1684391910,
-      "checksum" : "acd87561dc47a27b8419f01f963570fb",
-      "fileSize" : 4488
+      "lastUpdated" : 1684584082,
+      "checksum" : "25ca7a9b59f86d37402d1dbafa636962",
+      "fileSize" : 3921
     },
     {
       "path" : "scripts/ui-layerManager.js",
@@ -486,7 +500,7 @@
     {
       "path" : "index.html",
       "mimeType" : "text/html",
-      "lastUpdated" : 1684391029,
+      "lastUpdated" : 1684580281,
       "checksum" : "3fd1d8db3fe3b73b383f06108a221ed5",
       "fileSize" : 2549
     },
@@ -500,9 +514,9 @@
     {
       "path" : "scripts/zz-15mincategories.js",
       "mimeType" : "text/javascript",
-      "lastUpdated" : 1684393500,
-      "checksum" : "7a16bb76063a15cda5369e00ed074acd",
-      "fileSize" : 3530
+      "lastUpdated" : 1684610618,
+      "checksum" : "a4aaca59e8b9fcb94e5c9a6ca0ad9423",
+      "fileSize" : 3529
     },
     {
       "path" : "scripts/ui-rightsidebar.js",
@@ -521,16 +535,16 @@
     {
       "path" : "scripts/01-pop-sidebar.js",
       "mimeType" : "text/javascript",
-      "lastUpdated" : 1684203676,
-      "checksum" : "b69983e34e9d3e38f0a4912ff1704135",
-      "fileSize" : 706
+      "lastUpdated" : 1684584113,
+      "checksum" : "e4d841d4918a89b887a73413ee57e830",
+      "fileSize" : 2399
     },
     {
       "path" : "scripts/00-isochrone.js",
       "mimeType" : "text/javascript",
-      "lastUpdated" : 1684393302,
-      "checksum" : "5420c490fbde4acdf26a3a894ad3bf5b",
-      "fileSize" : 2488
+      "lastUpdated" : 1684530893,
+      "checksum" : "2a8c7f83a2f8aa9983e16ce809ec17bf",
+      "fileSize" : 2485
     },
     {
       "path" : ".git/logs/refs/heads/main",
@@ -549,9 +563,9 @@
     {
       "path" : "scripts/02-buildings-sidebar.js",
       "mimeType" : "text/javascript",
-      "lastUpdated" : 1684203661,
-      "checksum" : "0b5bc5a05bb0500da6a8bc06a0a790da",
-      "fileSize" : 696
+      "lastUpdated" : 1684413216,
+      "checksum" : "1f763046cfedbe6681dd25e103786af0",
+      "fileSize" : 686
     },
     {
       "path" : ".git/objects/e4/d0dbe09ff0a785063f214fe25d1b0a9ba414d1",

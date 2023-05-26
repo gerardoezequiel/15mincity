@@ -12,8 +12,8 @@ export function createBuildingsSidebar() {
   contentContainer.classList.add("p-4");
   buildingsSidebar.appendChild(contentContainer);
 
-  // Add your content for the buildings sidebar here
-  // ...
+  // Add  content for the buildings sidebar here
+  
 
   // Example:
   const title = document.createElement("h2");

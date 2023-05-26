@@ -41,7 +41,7 @@ export async function updateIsochrones(
     if (map.getLayer(layerId)) {
       map.getSource(layerId).setData(iso);
       map.setLayerZoomRange(layerId, 4, 22);
-      map.setPaintProperty(layerId, "fill-opacity", 0.2);
+      map.setPaintProperty(layerId, "fill-opacity", 0.1);
     } else {
       map.addLayer(
         {
@@ -59,7 +59,7 @@ export async function updateIsochrones(
             "fill-outline-color": "rgba(255, 255, 2, 0.8)",
           },
         },
-        "poi-label"
+        //"water"
       );
 
       map.addLayer({
@@ -70,7 +70,7 @@ export async function updateIsochrones(
           "text-color": "black",
         },
       });
-      "airport-label";
+     // "airport-label";
     }
 
     map.setLayerZoomRange(layerId, 4, 22);
